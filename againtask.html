@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prototype</title>
+</head>
+
+<body>
+    <script>
+        var len;
+        var parent;
+        var ParentMoney;
+        var a = document.createElement("BUTTON");
+        a.innerHTML = "start";
+
+        function pro() {
+            return new Promise(function(resolve, reject) {
+                resolve({
+                    a: Parent()
+                })
+
+            })
+        }
+        pro().then(function(a) {
+            alert("promise completed");
+        }).catch(function() {
+            alert("promise not completed");
+        })
+
+        function Parent() {
+            parent = prompt("please enter parent name");
+            len = parent.length;
+            if (len > 0) {
+                Option();
+            } else if (len == 0) {
+                alert("please enter parent name");
+                Parent();
+            }
+        }
+
+
+        function Option() {
+            var option = prompt("Enter 'Y' if parent has child else Enter 'N'")
+            len = option.length;
+            if (len > 0 && option.match(/y/i)) {
+                Child();
+            } else if (len == 0) {
+                alert("please enter given character");
+                Option();
+            } else if (len > 0 && option.match(/n/i)) {
+                // alert("you select N ");
+                console.log("Total Members :" + "1");
+                console.log("Commission Details :");
+                console.log(parent + ":" + "500" + "INR");
+            } else {
+                alert("please select given character");
+                Option();
+            }
+        }
+
+        function Child() {
+            var child = prompt("please enter child name");
+            len = child.length;
+            if (len > 0) {
+                if (child.match(/,/)) {
+                    let arr = child.split(",");
+                    let childmoney = [];
+                    console.log("Total Members :" + (arr.length));
+                    console.log("Commission Details :");
+                    let i = 1;
+                    ParentMoney = (arr.length) * ((5000 * 10) / 100);
+                    console.log(parent + ":" + ParentMoney + "INR");
+                    for (var j = 0; j < arr.length; j++) {
+                        childmoney[j] = (5000 * 5) / 100;
+                        console.log(arr[j] + ":" + childmoney[j] + "INR");
+                        i++;
+                    }
+                } else {
+                    console.log("Total Members :" + "1");
+                    console.log("Commission Details :");
+                    console.log(parent + ":" + "1000" + "INR");
+                    console.log(child + ":" + "250" + "INR");
+                }
+            } else if (len == 0) {
+                alert("please enter value");
+                Child();
+            }
+
+        }
+    </script>
+</body>
+
+</html>
